@@ -22,11 +22,13 @@
 
                 echo "<h1> NO RESULT</h1>";
 
-            } 
+            } else {
+            echo "<h1> SOME RESULT </H1>";
         }
+        } 
 
   
-    
+  
 
 
 ?>
