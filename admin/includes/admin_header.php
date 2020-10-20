@@ -1,3 +1,8 @@
+
+<?php ob_start();?>
+<?php include "../includes/dp.php"; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,3 +33,4 @@
     <![endif]-->
 
 </head>
+<body>

@@ -29,7 +29,7 @@
 
             <?php 
 
-        $query = "SELECT * FROM catagories LIMIT 8";
+        $query = "SELECT * FROM categories LIMIT 8";
             $select_categories_sidebar = mysqli_query($connection, $query);
                             ?>
 
