@@ -1,6 +1,8 @@
 
 <?php ob_start();?>
 <?php include "../includes/dp.php"; ?>
+<?php include "functions.php"; ?>
+
 
 
 <!DOCTYPE html>

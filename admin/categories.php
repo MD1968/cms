@@ -20,31 +20,7 @@
             <!-- Add Category form -->
             <div class="col-xs-6">
 
-    <?php  
-    
-    if(isset($_POST['submit'])) {
-        $cat_title = $_POST['cat_title'];
-
-        if($cat_title == "" || empty($cat_title)) {
-            echo "This filed should not be empty.";
-
-        } else {
-
-        $query = "INSERT INTO categories(cat_title)";
-        $query .= "VALUE('{$cat_title}') ";
-
-        $create_category_query = mysqli_query($connection, $query);
-
-        if(!$create_category_query) {
-            die('QUERY FAILED' . mysqli_error($connection));
-        }
-
-        }
-    
-    }
-    
-    
-    ?>
+    <?php   insert_categorys(); ?>
 
 
     
@@ -160,13 +136,16 @@ $cat_title = $row['cat_title'];
 <!-- Delete query -->
 
 <?php 
-    if(isset($_GET['delete'])){
+
+
+        if(isset($_GET['delete'])){
         $the_cat_id = $_GET['delete'];
         $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
         $delete_query = mysqli_query($connection, $query);
         header("Location: categories.php");
 
     }
+
 
 
 ?>
