@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Marks' Blog ¦ Admin</a>
+                <a class="navbar-brand" href="../index.php">Marks' Blog ¦ Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -57,7 +57,7 @@
 
 
                     <li class="active">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Comments</a>
+                        <a href="./comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
                     </li>
 
                     <li>

@@ -6,7 +6,6 @@
 
     }
 
-
     $query = "SELECT * FROM posts WHERE post_id = $the_post_id  ";
     $select_posts_by_id = mysqli_query($connection,$query);  
 
@@ -39,6 +38,21 @@
         $post_tags           =  ($_POST['post_tags']);
         
         move_uploaded_file($post_image_temp, "../images/$post_image"); 
+
+     if(empty($post_image)) {
+        
+        $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+        $select_image = mysqli_query($connection,$query);
+            
+        while($row = mysqli_fetch_array($select_image)) {
+            
+           $post_image = $row['post_image'];
+        
+        }
+        
+        
+}
+
        
           $query = "UPDATE posts SET ";
           $query .="post_title  = '{$post_title}', ";
@@ -57,10 +71,10 @@
         
         echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
         
-
-    
-    
     }
+    
+    
+   
 
 
 
