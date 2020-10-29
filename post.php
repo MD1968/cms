@@ -157,6 +157,8 @@
             if(!$select_comment_query) {
 
                 die('Query Failed' . mysqli_error($connection));
+
+
              }
             while ($row = mysqli_fetch_array($select_comment_query)) {
             $comment_date   = $row['comment_date']; 
@@ -164,13 +166,13 @@
             $comment_author = $row['comment_author'];
                 
                 ?>
-                
+              
                 
                            <!-- Comment -->
                 <div class="media">
                      
                     <a class="pull-left" href="#">
-           <!--             <img class="media-object" src="http://placehold.it/64x64" alt=""> -->
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author;   ?>
@@ -178,26 +180,11 @@
                         </h4>
                         
                         <?php echo $comment_content;   ?>
-                        <hr>
+ 
                     </div>
                 </div>
-     
-                
-  
-
-           <?php }     
-
-          
-
-            
-                ?>
-           
-  
-
-            </div>
-            
-              
-
+                  </div>
+<?php } ?>
             <!-- Blog Sidebar Widgets Column -->
             
             
