@@ -1,4 +1,4 @@
-           <table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -6,8 +6,10 @@
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Email</th>
-                        <th>Role</th>
-                        <th>Role</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+
+                     
                    
         
                     </tr>
@@ -53,6 +55,8 @@
         echo "<td>$user_lastname</td>";
         echo "<td>$user_email</td>";
         echo "<td>$user_role</td>";
+        echo "<td>$user_email</td>";
+        echo "<td>$user_role</td>";
         
         
 //        $query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
@@ -93,7 +97,7 @@
 
 if(isset($_GET['change_to_admin'])) {
     
-    $the_user_id = ($_GET['change_to_admin']);
+    $the_user_id = escape($_GET['change_to_admin']);
     
     $query = "UPDATE users SET user_role = 'admin' WHERE user_id = $the_user_id   ";
     $change_to_admin_query = mysqli_query($connection, $query);
@@ -108,7 +112,7 @@ if(isset($_GET['change_to_admin'])) {
 
 if(isset($_GET['change_to_sub'])){
     
-    $the_user_id = ($_GET['change_to_sub']);
+    $the_user_id = escape($_GET['change_to_sub']);
     
 
     $query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = $the_user_id   ";
@@ -119,28 +123,16 @@ if(isset($_GET['change_to_sub'])){
     
 }
 
+
+
+
 if(isset($_GET['delete'])){
-    
-    $the_user_id = ($_GET['delete']);
-    
-
-    $query = "DELETE FROM users WHERE user_id = $the_user_id   ";
-    $delete_user_query = mysqli_query($connection, $query);
-    header("Location: users.php");
-    
-    
-    
-}
-
-
-
-
 
     if(isset($_SESSION['user_role'])) {
 
         if($_SESSION['user_role'] == 'admin') {
 
-        $the_user_id = ($_GET['delete']);
+        $the_user_id = escape($_GET['delete']);
 
         $query = "DELETE FROM users WHERE user_id = {$the_user_id} ";
         $delete_user_query = mysqli_query($connection, $query);
@@ -152,7 +144,7 @@ if(isset($_GET['delete'])){
         }
    
     
-    
+    }
 
 
 

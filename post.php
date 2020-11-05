@@ -20,34 +20,71 @@
 
     if(isset($_GET['p_id'])){
     
-    $the_post_id = ($_GET['p_id']);
-
-    }
-
-    $query = "SELECT * FROM posts WHERE post_id = $the_post_id  ";
-    $select_posts_by_id = mysqli_query($connection,$query);  
-
-    while($row = mysqli_fetch_assoc($select_posts_by_id)) {
-
-        $post_id            = $row['post_id'];
-        $post_author        = $row['post_author'];
-        $post_title         = $row['post_title'];
-        $post_category_id   = $row['post_category_id'];
-        $post_status        = $row['post_status'];
-        $post_image         = $row['post_image'];
-        $post_content       = $row['post_content'];
-        $post_tags          = $row['post_tags'];
-        $post_comment_count = $row['post_comment_count'];
-        $post_date          = $row['post_date'];
-        
-         }
+       $the_post_id = $_GET['p_id'];
 
 
 
+        $update_statement = mysqli_prepare($connection, "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = ?");
 
+        mysqli_stmt_bind_param($update_statement, "i", $the_post_id);
+
+        mysqli_stmt_execute($update_statement);
+
+        // mysqli_stmt_bind_result($stmt1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
     
 
 
+     if(!$update_statement) {
+
+        die("query failed" );
+    }
+
+
+    if(isset($_SESSION['username']) && is_admin($_SESSION['username']) ) {
+
+
+         $stmt1 = mysqli_prepare($connection, "SELECT post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_id = ?");
+
+
+    } else {
+        $stmt2 = mysqli_prepare($connection , "SELECT post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_id = ? AND post_status = ? ");
+
+        $published = 'published';
+
+
+
+    }
+
+
+
+    if(isset($stmt1)){
+
+        mysqli_stmt_bind_param($stmt1, "i", $the_post_id);
+
+        mysqli_stmt_execute($stmt1);
+
+        mysqli_stmt_bind_result($stmt1, $post_title, $post_author, $post_date, $post_image, $post_content);
+
+      $stmt = $stmt1;
+
+
+    }else {
+
+
+        mysqli_stmt_bind_param($stmt2, "is", $the_post_id, $published);
+
+        mysqli_stmt_execute($stmt2);
+
+        mysqli_stmt_bind_result($stmt2, $post_title, $post_author, $post_date, $post_image, $post_content);
+
+     $stmt = $stmt2;
+
+    }
+
+
+
+
+    while(mysqli_stmt_fetch($stmt)) {
 
 
 
@@ -74,6 +111,15 @@
 
                 <hr>
                 
+<?php } 
+
+
+
+
+
+
+
+?>
 
 
 <!-- Blog Comments -->
@@ -157,8 +203,6 @@
             if(!$select_comment_query) {
 
                 die('Query Failed' . mysqli_error($connection));
-
-
              }
             while ($row = mysqli_fetch_array($select_comment_query)) {
             $comment_date   = $row['comment_date']; 
@@ -166,7 +210,7 @@
             $comment_author = $row['comment_author'];
                 
                 ?>
-              
+                
                 
                            <!-- Comment -->
                 <div class="media">
@@ -183,8 +227,25 @@
  
                     </div>
                 </div>
-                  </div>
-<?php } ?>
+     
+                
+  
+
+           <?php } }    else {
+
+
+            header("Location: index.php");
+
+
+            }
+                ?>
+           
+  
+
+            </div>
+            
+              
+
             <!-- Blog Sidebar Widgets Column -->
             
             
