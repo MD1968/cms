@@ -1,29 +1,42 @@
-<?php include "../includes/dp.php"; ?>
+<?php ob_start(); ?>
+<?php include "../includes/db.php"; ?>
 <?php include "functions.php"; ?>
-<?php ob_start();?>
-<?php session_start(); ?>
 
+
+
+<?php session_start(); ?>
 
 
 <?php 
 
-if(!isset($_SESSION['user_role'])) {
 
-    
-    header("Location: ../index.php");
+
+
+if(isset($_SESSION['user_role'])) {
+
+
+
+} else {
+
+header("location: ../index.php");
 
 
 }
 
 
 
-?>
+
+ ?>
+
+
+
 
 
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
 
@@ -33,7 +46,7 @@ if(!isset($_SESSION['user_role'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Mark's Blog - Admin</title>
+    <title>SB Admin - Bootstrap Admin Template</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,17 +54,8 @@ if(!isset($_SESSION['user_role'])) {
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
-    <script src="js/jquery.js"></script>
-    
-
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Google Chart -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <!-- Editor -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,5 +64,29 @@ if(!isset($_SESSION['user_role'])) {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+ <link href="css/styles.css" rel="stylesheet">
+
+ 
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+
+ <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+
+    <!-- Can use this one below as well -->
+<!--   <script src="http://cdn.tinymce.com/4/tinymce.min.js"></script> -->
+
+
+<script src="js/jquery.js"></script>
+
+
+ 
+
+
+ 
 </head>
+
 <body>
+
+
+

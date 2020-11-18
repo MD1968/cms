@@ -6,7 +6,7 @@
 if(isset($_GET['edit_user'])){
 
 
-    $the_user_id =  ($_GET['edit_user']);
+    $the_user_id =  escape($_GET['edit_user']);
     
 
     $query = "SELECT * FROM users WHERE user_id = $the_user_id ";
@@ -36,25 +36,25 @@ if(isset($_GET['edit_user'])){
    
 
    if(isset($_POST['edit_user'])) {
-       
-            
+
+
             $user_firstname   = escape($_POST['user_firstname']);
             $user_lastname    = escape($_POST['user_lastname']);
             $user_role        = escape($_POST['user_role']);
-    
+
            // $post_image = $_FILES['image']['name'];
            // $post_image_temp = $_FILES['image']['tmp_name'];
-    
-    
+
+
             $username      = escape($_POST['username']);
             $user_email    = escape($_POST['user_email']);
             $user_password = escape($_POST['user_password']);
             $post_date     = escape(date('d-m-y'));
 
-       
-      
 
-        if(!empty($user_password)) { 
+
+
+        if(!empty($user_password)) {
 
           $query_password = "SELECT user_password FROM users WHERE user_id =  $the_user_id";
           $get_user_query = mysqli_query($connection, $query_password);
@@ -78,22 +78,22 @@ if(isset($_GET['edit_user'])){
           $query .="user_role   =  '{$user_role}', ";
           $query .="username = '{$username}', ";
           $query .="user_email = '{$user_email}', ";
-          $query .="user_password   = '{$user_password}' ";
+          $query .="user_password   = '{$hashed_password}' ";
           $query .= "WHERE user_id = {$the_user_id} ";
-       
-       
+
+
             $edit_user_query = mysqli_query($connection,$query);
-       
+
             confirmQuery($edit_user_query);
 
 
           echo "User Updated" . " <a href='users.php'>View Users?</a>";
 
-      
+
 
              }  // if password empty check end
 
-    
+
 
 
 
@@ -165,12 +165,7 @@ if(isset($_GET['edit_user'])){
        
       </div>
       
-<!--
-      <div class="form-group">
-         <label for="post_image">Post Image</label>
-          <input type="file"  name="image">
-      </div>
--->
+
 
       <div class="form-group">
          <label for="post_tags">Username</label>
@@ -184,7 +179,7 @@ if(isset($_GET['edit_user'])){
       
       <div class="form-group">
          <label for="post_content">Password</label>
-          <input type="password" value="<?php //echo $user_password; ?>" class="form-control" name="user_password">
+          <input autocomplete="off" type="password"  class="form-control" name="user_password">
       </div>
       
       

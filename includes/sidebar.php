@@ -1,7 +1,38 @@
-<!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
 
-            <!-- Blog Search Well -->
+<?php
+
+
+        if(ifItIsMethod('post')){
+
+
+                if(isset($_POST['login'])){
+
+
+                    if(isset($_POST['username']) && isset($_POST['password'])){
+
+                        login_user($_POST['username'], $_POST['password']);
+
+
+                    }else {
+
+
+                        redirect('index');
+                    }
+
+
+                }
+
+        }
+
+?>
+
+
+
+<!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+                 
+
+                <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
                     <form action="search.php" method="post">
@@ -16,14 +47,23 @@
                     </form><!--search form-->
                     <!-- /.input-group -->
                 </div>
-
-<!--Login -->
+                
+                
+                
+  <!--Login -->
     <div class="well">
 
+        <?php if(isset($_SESSION['user_role'])): ?>
+
+             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
+
+             <a href="/cms/includes/logout.php" class="btn btn-primary">Logout</a>
+
+        <?php else: ?>
 
              <h4>Login</h4>
 
-                <form action="includes/login.php" method="post">
+                <form method="post">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Enter Username">
                 </div>
@@ -35,7 +75,6 @@
                        </button>
                     </span>
                    </div>
-               </form>
 
                     <div class="form-group">
 
@@ -44,13 +83,26 @@
 
                     </div>
 
+                </form><!--search form-->
+                <!-- /.input-group -->
 
 
 
-</div>
-            <!-- Blog Categories Well -->
-            <div class="well">
+        <?php endif; ?>
 
+
+       
+    </div>
+                
+                
+                
+                
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                  
+                  
+                  
         <?php 
         $query = "SELECT * FROM categories";
         $select_categories_sidebar = mysqli_query($connection,$query);         
@@ -72,20 +124,16 @@
         }
    
                             ?>
-                            
-                        </ul>
+                              
+                            </ul>
+                        </div>
+                        
                     </div>
-                    <!-- /.col-lg-6 -->
-                   
+                    <!-- /.row -->
                 </div>
-                <!-- /.row -->
+                
+                <!-- Side Widget Well -->
+                 <?php //include "widget.php"; ?>
+
             </div>
-
-
-
-
-            <!-- Side Widget Well -->
-        <?php include "includes/widget.php";?>
-    <!-- /.row -->
-
-    <hr>
+            

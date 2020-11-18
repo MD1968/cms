@@ -6,10 +6,7 @@
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Email</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-
-                     
+                        <th>Role</th>
                    
         
                     </tr>
@@ -53,8 +50,6 @@
 //        }
 //        
         echo "<td>$user_lastname</td>";
-        echo "<td>$user_email</td>";
-        echo "<td>$user_role</td>";
         echo "<td>$user_email</td>";
         echo "<td>$user_role</td>";
         
