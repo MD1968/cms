@@ -2,17 +2,21 @@
 <?php  include "includes/header.php"; ?>
 
 <?php
+//
+//if(is_the_logged_in_user_owner(156)){
+//
+//    echo "YES";
+//
+//} else {
+//
+//    echo "NO";
+//
+//}
 
+$result = get_user_and_admin_posts();
 
-echo loggedInUserId();
+while($row = mysqli_fetch_array($result)){
 
-if(userLikedThisPost(139)){
-
-    echo "USER LIKED IT";
-
-
-} else {
-
-    echo "USER DID NOT LIKE IT";
+    var_dump($row['post_title']);
 
 }
